@@ -7,23 +7,21 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	//implementa um listener para a porta
+
 	lis, err := net.Listen("tcp", "localhost:50051")
 	if err != nil {
-		log.Fatalf("Não foi possivel conectar: %v", err)
+		log.Fatalf("Could not connect: %v", err)
 	}
 
-	//cria um server grpc
 	grpcServer := grpc.NewServer()
+	pb.RegisterUserServiceServer(grpcServer, &services.UserService{})
+	reflection.Register(grpcServer)
 
-	//registra o service no server grcp
-	pb.RegisterUserServiceServer(grpcServer, services.NewUserService())
-
-	//atribui o listener de porta ao servidor grcp e inicia o mesmo
 	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("Não foi possivel servir: %v", err)
+		log.Fatalf("Could not serve: %v", err)
 	}
 }
