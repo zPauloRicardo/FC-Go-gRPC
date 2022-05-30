@@ -29,11 +29,12 @@ message Users {
 service UserService {
     //descreve a função remota
     rpc AddUser (User) returns (User);
-    //status
+    //stream server
     rpc AddUserVerbose (User) returns (stream UserResultStream);
-
+    //stream client
     rpc AddUsers (stream User) returns (Users);
-
+    //stream bidirencional
+    rpc AddUserStreamBoth(stream User) returns (stream UserResultStream);
 }
 
 
