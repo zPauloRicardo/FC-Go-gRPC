@@ -1,4 +1,5 @@
 #gRPC
+
 É um framework de comunicação do google com suporte multiplataforma e multilinguagem.
 
 Tem como vantagens o uso do HTTP/2 e trafego de dados binarios, tornando ele mais leve e rapido que o REST.
