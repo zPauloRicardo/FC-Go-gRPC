@@ -20,6 +20,10 @@ message UserResultStream {
     User user = 2;
 }
 
+message Users {
+    repeated User user = 1;
+}
+
 
 //descreve o serviço
 service UserService {
@@ -27,6 +31,8 @@ service UserService {
     rpc AddUser (User) returns (User);
     //status
     rpc AddUserVerbose (User) returns (stream UserResultStream);
+
+    rpc AddUsers (stream User) returns (Users);
 
 }
 
